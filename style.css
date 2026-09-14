@@ -1,0 +1,381 @@
+/* ============================================================
+   Miles Kearl — style.css
+   Plain CSS. No framework. Read it top to bottom.
+
+   The custom properties in :root are named colors and fonts.
+   Change one there and it changes everywhere on the site.
+   ============================================================ */
+
+:root {
+  /* Steel and copper — the two metals in an electrical panel.
+     Cool greys so the copper stands out instead of blending in. */
+  --ground:    #E9EDEF;
+  --surface:   #F6F8F9;
+  --ink:       #15191B;
+  --ink-2:     #4E575C;
+  --ink-3:     #79858A;
+  --line:      #C7D0D4;
+  --line-soft: #DBE2E5;
+  --copper:    #9E4E24;
+  --copper-lt: #C98A63;
+  --copper-wash: #EADFD8;
+
+  --display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --body:    "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono:    "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+
+/* border-box means padding stops making things wider than you asked for.
+   Set it once, globally, and forget it. */
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: var(--body);
+  font-size: 17px;
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: var(--copper); text-underline-offset: 2px; }
+a:focus-visible {
+  outline: 2px solid var(--copper);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Screen-reader-only: present for assistive tech, invisible on screen. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ---------- layout helpers ---------- */
+
+.wrap { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+
+/* "narrow" doesn't shrink the container — it caps the width of the TEXT
+   inside it. That way every section on the page shares the same left
+   edge, instead of the reading sections floating in from the sides.
+   ~62 characters is about as wide as text can get and stay easy to read. */
+.wrap.narrow > p,
+.wrap.narrow > h2,
+.wrap.narrow > .eyebrow { max-width: 62ch; }
+.wrap.narrow > .sketch { max-width: 660px; }
+
+.band { padding: 68px 0; }
+.band.alt { background: var(--surface); border-block: 1px solid var(--line-soft); }
+
+/* ---------- header ---------- */
+
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+  padding: 14px 24px;
+  background: rgba(233, 237, 239, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.wordmark {
+  font-family: var(--mono);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.nav { display: flex; gap: 20px; flex-wrap: wrap; }
+.nav a {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--ink-2);
+  text-decoration: none;
+}
+.nav a:hover { color: var(--copper); }
+
+/* ---------- hero ---------- */
+
+/* Two layers in one background: a dark gradient scrim ON TOP of the photo.
+   Without the scrim, light parts of the photo swallow the white text.
+   If assets/hero.jpg is missing, the gradient alone still looks deliberate. */
+.hero {
+  position: relative;
+  background-image:
+    linear-gradient(180deg, rgba(12,16,18,0.55) 0%, rgba(12,16,18,0.82) 100%),
+    url("assets/hero.jpg");
+  background-color: #1B2225;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  padding: 120px 24px 128px;
+}
+
+.hero-inner { max-width: 1060px; margin: 0 auto; }
+
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: clamp(52px, 11vw, 118px);
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.tagline {
+  font-size: clamp(19px, 2.4vw, 24px);
+  line-height: 1.45;
+  max-width: 26em;
+  margin: 22px 0 0;
+  color: rgba(255,255,255,0.9);
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 34px;
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  border: 1px solid rgba(255,255,255,0.45);
+  border-radius: 2px;
+  padding: 11px 18px;
+}
+.cta:hover { background: rgba(255,255,255,0.12); }
+
+/* ---------- type ---------- */
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 500;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--copper);
+  margin: 0 0 14px;
+}
+
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(27px, 4vw, 36px);
+  letter-spacing: -0.025em;
+  line-height: 1.12;
+  margin: 0 0 20px;
+  text-wrap: balance;
+}
+
+h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 19px;
+  letter-spacing: -0.015em;
+  margin: 0 0 16px;
+}
+
+p { margin: 0 0 16px; }
+p:last-child { margin-bottom: 0; }
+
+.lead { font-size: 19px; line-height: 1.55; }
+.muted { color: var(--ink-2); }
+.small { font-size: 14.5px; }
+
+/* ---------- module grid ---------- */
+
+/* auto-fit means: fit as many 280px+ columns as will go, then wrap.
+   No media query needed — it collapses to one column on a phone by itself. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.panel {
+  background: var(--ground);
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 24px;
+}
+
+/* ---------- projects ---------- */
+
+.projects, .agenda, .ideas { list-style: none; margin: 0; padding: 0; }
+
+.projects li {
+  padding: 12px 0;
+  border-top: 1px solid var(--line-soft);
+}
+.projects li:first-child { border-top: none; padding-top: 0; }
+
+.p-name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 15.5px;
+  display: block;
+}
+.p-note { color: var(--ink-2); font-size: 14.5px; display: block; }
+
+.status {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 9.5px; font-weight: 600;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  border: 1px solid var(--copper-lt);
+  background: var(--copper-wash);
+  color: var(--copper);
+  margin-bottom: 5px;
+}
+.status.shipped  { border-color: #7FA88E; background: #DFE9E2; color: #2F6B4F; }
+.status.planned  { border-color: var(--line); background: var(--surface); color: var(--ink-3); }
+
+/* ---------- weather ---------- */
+
+.temp {
+  font-family: var(--display);
+  font-weight: 800;
+  font-size: 54px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  margin: 0 0 4px;
+  font-variant-numeric: tabular-nums;
+}
+.sky { font-size: 16px; color: var(--ink-2); margin: 0 0 18px; }
+
+.wrow {
+  display: flex; justify-content: space-between; gap: 12px;
+  padding: 9px 0;
+  border-top: 1px solid var(--line-soft);
+  font-family: var(--mono);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+.wrow span:first-child { color: var(--ink-3); letter-spacing: 0.06em; text-transform: uppercase; font-size: 10.5px; align-self: center; }
+.wrow span:last-child { color: var(--ink); font-weight: 500; }
+
+/* ---------- agenda ---------- */
+
+.agenda li {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 14px;
+  padding: 11px 0;
+  border-top: 1px solid var(--line-soft);
+  align-items: baseline;
+}
+.agenda li:first-child { border-top: none; padding-top: 0; }
+
+.a-date {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--copper);
+}
+.a-label { font-size: 15px; line-height: 1.45; }
+.a-src {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9.5px;
+  letter-spacing: 0.11em; text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+/* ---------- sketch ---------- */
+
+.sketch { margin: 28px 0 0; }
+.sketch img {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  background: #fff;
+}
+.sketch figcaption {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink-3);
+  margin-top: 12px;
+}
+
+/* ---------- idea log ---------- */
+
+.idea-form { display: flex; gap: 10px; margin: 24px 0 8px; flex-wrap: wrap; }
+
+.idea-form input {
+  flex: 1 1 240px;
+  font-family: var(--body);
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  background: var(--ground);
+  color: var(--ink);
+}
+.idea-form input:focus-visible { outline: 2px solid var(--copper); outline-offset: 1px; }
+
+.idea-form button {
+  font-family: var(--mono);
+  font-size: 11px; font-weight: 600;
+  letter-spacing: 0.13em; text-transform: uppercase;
+  padding: 12px 22px;
+  border: 1px solid var(--copper);
+  border-radius: 2px;
+  background: var(--copper);
+  color: #fff;
+  cursor: pointer;
+}
+.idea-form button:hover { background: #8A431F; }
+
+.ideas { margin-top: 22px; }
+.ideas li {
+  position: relative;
+  padding: 11px 0 11px 26px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 16px;
+}
+.ideas li:first-child { border-top: none; }
+.ideas li::before {
+  content: "";
+  position: absolute; left: 0; top: 1.35em;
+  width: 12px; height: 1px;
+  background: var(--copper);
+}
+.mine { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.11em; text-transform: uppercase; color: var(--ink-3); margin-left: 8px; }
+
+/* ---------- footer ---------- */
+
+.footer {
+  padding: 54px 0 72px;
+  border-top: 1px solid var(--line);
+}
+.foot-name {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+}
+
+/* ---------- phones ---------- */
+
+@media (max-width: 640px) {
+  .band { padding: 48px 0; }
+  .hero { padding: 88px 20px 96px; }
+  .wrap { padding: 0 20px; }
+  .nav { gap: 14px; }
+}
+
+/* Respect people who've asked their system to reduce motion. */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+html { scroll-behavior: smooth; }

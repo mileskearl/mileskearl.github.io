@@ -1,1 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Miles Kearl</title>
+  <meta name="description" content="Miles Kearl — 16, Orem Utah, building things and starting a business.">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============ HEADER ============ -->
+  <!-- The wordmark on the left, jump-links on the right. The links start with #
+       which means "scroll to the section on this page with that id" -->
+  <header class="topbar">
+    <a class="wordmark" href="#top">mileskearl.com</a>
+    <nav class="nav">
+      <a href="#about">About</a>
+      <a href="#building">Building</a>
+      <a href="#next">What's next</a>
+      <a href="#ideas">Idea log</a>
+    </nav>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <!-- The photo is set as a background in style.css (.hero), so it can sit
+       under a dark scrim and keep the text readable. Swap assets/hero.jpg
+       for your own photo. -->
+  <section class="hero" id="top">
+    <div class="hero-inner">
+      <h1>Miles Kearl</h1>
+      <p class="tagline">Sixteen, in Orem, Utah. Learning how businesses actually work by starting one.</p>
+      <a class="cta" href="#about">Read on <span aria-hidden="true">&darr;</span></a>
+    </div>
+  </section>
+
+  <main>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="band" id="about">
+      <div class="wrap narrow">
+        <p class="eyebrow">About</p>
+        <h2>What I'm doing right now</h2>
+
+        <!-- REPLACE THIS PARAGRAPH WITH YOUR OWN WORDS.
+             It is the one thing on this page nobody can write for you. -->
+        <p class="lead">I'm a junior in Orem, Utah, spending this fall interning at a company called After
+          — two sessions a week, learning how a business actually works: what things cost, how they get
+          priced, where the money goes, and how you find someone willing to pay you. I'd rather build
+          something new than sell something that already exists, so I'm using the fall to figure out what
+          that something is. This site is where I'll keep the work as it happens.</p>
+
+        <p class="muted">This is also the first website I've ever built, which is why it looks the way it
+          looks. I'd rather ship it and fix it than sit on it.</p>
+      </div>
+    </section>
+
+    <!-- ============ MODULE GRID ============ -->
+    <!-- Three panels. All three get their content from data.js, drawn by app.js -->
+    <section class="band alt">
+      <div class="wrap">
+        <div class="grid">
+
+          <!-- --- What I'm building --- -->
+          <div class="panel" id="building">
+            <p class="eyebrow">Building</p>
+            <h3>Projects</h3>
+            <ul class="projects" id="project-list">
+              <!-- app.js fills this in -->
+            </ul>
+          </div>
+
+          <!-- --- Orem conditions --- -->
+          <!-- Live from Open-Meteo. Sunset matters: daylight is the work window
+               for any outdoor job, and it shrinks every week this fall. -->
+          <div class="panel">
+            <p class="eyebrow">Orem right now</p>
+            <h3>Conditions</h3>
+            <div class="weather" id="weather">
+              <p class="muted small">Loading&hellip;</p>
+            </div>
+          </div>
+
+          <!-- --- What's next --- -->
+          <div class="panel" id="next">
+            <p class="eyebrow">What's next</p>
+            <h3>Coming up</h3>
+            <ul class="agenda" id="agenda-list">
+              <!-- app.js fills this in -->
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THE SKETCH ============ -->
+    <section class="band" id="sketch">
+      <div class="wrap narrow">
+        <p class="eyebrow">Where this came from</p>
+        <h2>The drawing before the site</h2>
+        <p>Before any code existed, I drew this on paper. In December I'm going to put the two side by
+          side and see how much of it survived.</p>
+        <figure class="sketch">
+          <img src="assets/sketch.jpg" alt="Hand-drawn pencil layout of this website on notebook paper, showing a header, a full-width photo, and a lower band of panels.">
+          <figcaption>Week 1. Pencil, paper, no computer.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ IDEA LOG ============ -->
+    <!-- The interactive piece. Entries save with localStorage, which means they
+         save in YOUR browser only — nobody else sees what you add, and it's gone
+         if you clear your data. That's the honest limit of a site with no server. -->
+    <section class="band alt" id="ideas">
+      <div class="wrap narrow">
+        <p class="eyebrow">Idea log</p>
+        <h2>Things that seem broken</h2>
+        <p>Businesses come from noticing what's annoying, expensive, or slow — not from sitting down to
+          think of an idea. So I keep a list. Add one if you've got one.</p>
+
+        <form class="idea-form" id="idea-form">
+          <label class="sr-only" for="idea-input">Something that seems broken</label>
+          <input type="text" id="idea-input" maxlength="140" placeholder="What's broken, slow, or overpriced?" autocomplete="off">
+          <button type="submit">Add</button>
+        </form>
+        <p class="muted small" id="idea-note">Saved in your browser only — this site has no server yet.</p>
+
+        <ul class="ideas" id="idea-list">
+          <!-- app.js fills this in -->
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer">
+    <div class="wrap">
+      <p class="foot-name">Miles Kearl</p>
+      <p class="muted small">
+        <!-- TODO: replace with your business email. Do not put a personal phone
+             number or a home address on a public page. -->
+        <a href="mailto:REPLACE@EXAMPLE.COM">Email me</a>
+      </p>
+      <p class="muted small">Built by hand in Orem, Utah. First published September 2026.</p>
+    </div>
+  </footer>
+
+  <!-- data first, then the code that uses it -->
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
