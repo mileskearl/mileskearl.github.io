@@ -50,7 +50,16 @@ const AGENDA = [
     label: "Choose which business to actually start",
     source: "Internship"
   },
+   {
+    date: "2026-09-19",
+    label: "Homecoming",
+    source: "Timpview"
+  },
   {
+    date: "2026-10-13",
+    label: "End of Term",
+    source: "Timpview"
+  },
     date: "2026-12-18",
     label: "Present the whole thing to the After team",
     source: "Internship"
