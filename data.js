@@ -60,6 +60,7 @@ const AGENDA = [
     label: "End of Term",
     source: "Timpview"
   },
+   {
     date: "2026-12-18",
     label: "Present the whole thing to the After team",
     source: "Internship"
